@@ -1,41 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import "./App.css";
 import AlunoCard from "./components/AlunoCard/";
+import { useGlobalContext } from "./contexts/context";
+
 
 function App() {
-  const [alunos, setAlunos] = useState([]);
-  const [form, setForm] = useState({
-    tipo: "",
-    series: "",
-    repeticoes: "",
-    AlunoId: ""
-  });
-
-  const resolverMudanca = (e) => {
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value,
-    });
-  };
-
-  useEffect(() => {
-    fetch("http://localhost:3232/alunos/alunotreino", {
-      method: "GET",
-    })
-      .then((res) => res.json())
-      .then((data) => setAlunos(data.resultado))
-      .catch((err) => console.log(err));
-  }, []);
-
-  const criarTreino = (payload) =>{
-    fetch("http://localhost:3232/treinos/cadastro", {
-      method: "POST",
-      headers: {
-        'Content-Type':'application/json'
-      },
-      body: JSON.stringify(payload)
-    }).then(res => res.json()).catch(err => console.log(err))
-  }
+  const context = useGlobalContext();
+  const {alunos} = context;
 
   return (
     <>
@@ -67,18 +38,13 @@ function App() {
         >
           {alunos.map((aluno, idx) => {
             return (
-              <AlunoCard
-                stAluno={alunos}
-                mutAluno={setAlunos}
-                id={aluno.id}
-                key={idx}
-                nome={aluno.nome}
-                peso={aluno.peso}
-                treinos={aluno.Treinos}
-                form={form}
-                mudanca={resolverMudanca}
-                criar={criarTreino}
-              />
+                  <AlunoCard
+                    id={aluno.id}
+                    key={idx}
+                    nome={aluno.nome}
+                    peso={aluno.peso}
+                    treinos={aluno.Treinos}
+                  />
             );
           })}
         </div>

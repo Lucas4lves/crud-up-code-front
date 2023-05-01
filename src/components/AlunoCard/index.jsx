@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import "./alunocard.css";
 import avatar from "../../assets/avatar.png";
-
 import TreinoDisplay from "../TreinoDisplay";
 import CriarExecicio from "../CriarExercício";
+import { useGlobalContext } from '../../contexts/context'
 
-const AlunoCard = ({ id, nome, peso, treinos, form, mudanca, criar, mutAluno, stAluno }) => {
+const AlunoCard = ({ id, nome, peso, treinos}) => {
   const [mostrarTreinos, setMostrarTreinos] = useState(false);
   const [adicionarTreino, setAdicionarTreino] = useState(false);
+  const context = useGlobalContext();
+
+  const { resolverMudanca, setAlunos, alunos, form, criarTreino } = context;
+
+
   if (mostrarTreinos) {
     return (
       <div className="card-container treino">
@@ -50,7 +55,7 @@ const AlunoCard = ({ id, nome, peso, treinos, form, mudanca, criar, mutAluno, st
           );
         })}
         {adicionarTreino ? (
-          <CriarExecicio id={id} form={form} mudanca={mudanca} mutAluno={mutAluno} stAluno={stAluno} />
+          <CriarExecicio id={id} form={form} mudanca={resolverMudanca} mutAluno={setAlunos} stAluno={alunos} />
         ) : null}
         <div className="card-action">
           <button
@@ -67,16 +72,17 @@ const AlunoCard = ({ id, nome, peso, treinos, form, mudanca, criar, mutAluno, st
           >
             Voltar
           </button>
+
           <button onClick={()=>{
-            criar(form)
-            mutAluno(stAluno.map(a =>{
-                if(a.id == id)
-                {
-                    return a.Treinos = [...a.Treinos,
-                        form
-                    ]
-                }
-            }))
+            criarTreino(form)
+            // setAlunos(alunos.map(a =>{
+            //     if(a.id == id)
+            //     {
+            //         return a.Treinos = [...a.Treinos,
+            //             form
+            //         ]
+            //     }
+            // }))
           }}>Confirmar</button>
         </div>
       </div>
