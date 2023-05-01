@@ -1,0 +1,42 @@
+.card-container{
+    display: flex;
+    width: 28%;
+    flex-direction: column;
+    align-items: center;
+    max-height: 500px;
+    padding: 1em;
+    border-radius: 10px;
+    margin-bottom: 1em;
+    background-color: blueviolet;
+    position: relative;
+
+}
+
+ .card-container.treino {
+    width: 28%;
+    height: inherit;
+    background-color: black;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    max-height: 20%;
+    overflow-y:'scroll';
+    gap: 1em;    
+}
+
+.card-avatar{
+    width: 60%;
+}
+
+.edit {
+    position: absolute;
+    font-size: 20px;
+    top: 0px;
+    right: 10px;
+    cursor: pointer;
+}
+
+.card-action{
+    display: flex;
+    gap: 1em;
+}
