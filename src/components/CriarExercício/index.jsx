@@ -1,4 +1,3 @@
-
 import "./criar.css";
 
 const CriarExercicio = ({id, form, mudanca}) =>{

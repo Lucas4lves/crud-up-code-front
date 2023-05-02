@@ -2,11 +2,16 @@ import { useState, useEffect, useContext } from "react";
 import "./App.css";
 import AlunoCard from "./components/AlunoCard/";
 import { useGlobalContext } from "./contexts/context";
-
+import Formulario from "./pages/Formulario";
 
 function App() {
   const context = useGlobalContext();
-  const {alunos} = context;
+  const [page, setPage] = useState("all");
+  const { alunos } = context;
+
+  if (page == "cadastro") {
+    return <Formulario />;
+  }
 
   return (
     <>
@@ -22,7 +27,13 @@ function App() {
           }}
         >
           <h1>Up-Fitness</h1>
-          <p>Cadastrar Novo Aluno</p>
+          <button
+            onClick={() => {
+              setPage("cadastro");
+            }}
+          >
+            Cadastrar Alunos
+          </button>
         </header>
         <h2>Todos os Alunos: </h2>
         <div
@@ -38,13 +49,13 @@ function App() {
         >
           {alunos.map((aluno, idx) => {
             return (
-                  <AlunoCard
-                    id={aluno.id}
-                    key={idx}
-                    nome={aluno.nome}
-                    peso={aluno.peso}
-                    treinos={aluno.Treinos}
-                  />
+              <AlunoCard
+                id={aluno.id}
+                key={idx}
+                nome={aluno.nome}
+                peso={aluno.peso}
+                treinos={aluno.Treinos}
+              />
             );
           })}
         </div>

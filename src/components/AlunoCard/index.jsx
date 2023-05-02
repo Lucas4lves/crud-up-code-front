@@ -74,15 +74,7 @@ const AlunoCard = ({ id, nome, peso, treinos}) => {
           </button>
 
           <button onClick={()=>{
-            criarTreino(form)
-            // setAlunos(alunos.map(a =>{
-            //     if(a.id == id)
-            //     {
-            //         return a.Treinos = [...a.Treinos,
-            //             form
-            //         ]
-            //     }
-            // }))
+            criarTreino(form, id)
           }}>Confirmar</button>
         </div>
       </div>

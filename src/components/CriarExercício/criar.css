@@ -1,6 +1,7 @@
 .form {
     width: 200px;
     height: 50px;
+    max-height: 50px;
     display: flex; 
     align-items: center;
     justify-content: space-around;
@@ -10,14 +11,20 @@
 }
 
 .form input[name="tipo"] {
+    max-height: 30px;
     max-width: 60px;
     background-color: blueviolet;
+    margin-bottom: 0;
 }
 .form input[name="series"] {
+    max-height: 30px;
     max-width: 20px;
     background-color: red;
+    margin-bottom: 0;
 }
 .form input[name="repeticoes"] {
+    max-height: 30px;
     max-width: 20px;
     background-color: blue;
+    margin-bottom: 0;
 }

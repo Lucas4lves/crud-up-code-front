@@ -1,4 +1,4 @@
-import "./form.css"
+// import "./form.css"
 
 export default function Formulario(){
   

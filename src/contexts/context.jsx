@@ -22,7 +22,7 @@ const AppProvider = ({ children }) => {
     });
   };
 
-  const criarTreino = (payload) => {
+  const criarTreino = (payload, id) => {
     fetch("http://localhost:3232/treinos/cadastro", {
       method: "POST",
       headers: {
@@ -33,14 +33,17 @@ const AppProvider = ({ children }) => {
       .then((res) => res.json())
       .catch((err) => console.log(err));
 
-      setAlunos(alunos.map(a =>{
-        if(a.id == id)
-        {
-            return a.Treinos = [...a.Treinos,
+        setAlunos(alunos.map(aluno =>{
+          if(aluno.id == id)
+          {
+              return {...aluno, Treinos : [...aluno.Treinos,
                 form
-            ]
-        }
-    }))
+            ]}
+          } else{
+            return alunos;
+          }
+      }))
+
   };
 
   useEffect(() => {
