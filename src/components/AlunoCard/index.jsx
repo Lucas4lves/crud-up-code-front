@@ -86,7 +86,7 @@ const AlunoCard = ({ id, nome, peso, treinos}) => {
       <span className="edit">...</span>
       <img src={avatar} alt="" className="card-avatar" />
       <h4 className="card-name">{nome}</h4>
-      <p className="card-peso">Peso: {peso}</p>
+      <p className="card-peso">Peso: {peso} kg</p>
       <button
         onClick={() => {
           setMostrarTreinos(() => {
